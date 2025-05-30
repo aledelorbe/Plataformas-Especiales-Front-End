@@ -1,11 +1,13 @@
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
-import { transactionRequestType, transactionResponseType } from '../types'
+import { transactionResponseType } from '../types'
+import { getTransactions } from '../services/transactionService'
 
 type TransactionState = {
     transactionsResponses: transactionResponseType[]
 
-    addTransaction: (transaction: transactionRequestType) => void
+    fetchTransactions: () => Promise<void>
+    // addTransaction: (transaction: transactionRequestType) => void
 }
 
 
@@ -14,14 +16,24 @@ export const useTransactionStore = create<TransactionState>()(
         (set) => ({
         transactionsResponses: [],
 
-        // Para registrar nuevos pacientes
-        addTransaction: (transaction) => { 
-        
-            // Se agrega al arreglo de patients
-            set((state) => ({
-                patients: [...state.patients, patientCompleted]
+        // Funcion que manda a llamar la peticion de llenar el arreglo de criptomonedas
+        fetchTransactions: async () => { 
+
+            const trans = await getTransactions()
+
+            set(() => ({
+                transactionsResponses: trans
             }))
         },
+
+        // // Para registrar nuevos pacientes
+        // addTransaction: (transaction) => { 
+        
+        //     // Se agrega al arreglo de patients
+        //     set((state) => ({
+        //         patients: [...state.patients, patientCompleted]
+        //     }))
+        // },
 
     }), 
 ))

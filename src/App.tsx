@@ -7,10 +7,18 @@ import SubtitleDetail from './components/SubtitleDetail';
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import TransactionResponse from './components/TransactionResponse';
+import { useEffect } from 'react';
+import { useTransactionStore } from './store/transactionStore';
 
 export default function App() {
 
+    const { fetchTransactions } = useTransactionStore()
+
     const currentYear = new Date().getFullYear(); // Para imprimir el anio en el footer
+
+    useEffect(() => {
+        fetchTransactions()
+    }, [fetchTransactions]);
 
     return (
         <>
@@ -27,7 +35,7 @@ export default function App() {
             <div className='flex flex-col sm:flex-row justify-center items-center sm:justify-around sm:items-stretch mb-6 pt-6'>
                 {/* LADO IZQUIERDO */}
                 <div className='w-4/5 sm:w-2/5'>
-                    <SubtitleDetail 
+                    <SubtitleDetail
                         key={1}
                         subtitle='Register'
                     />

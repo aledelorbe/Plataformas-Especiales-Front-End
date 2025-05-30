@@ -7,7 +7,7 @@ export default function TransactionResponse() {
 
     const { transactionsResponses } = useTransactionStore()
 
-    // Para validar si hay pacientes o no
+    // To check if there are some transactions or not
     const hasTransactions = useMemo(() => transactionsResponses.length, [transactionsResponses])
 
     return (

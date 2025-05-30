@@ -116,7 +116,7 @@ export default function FormTransaction() {
 
                         <input
                             type="submit"
-                            value='Registrar Datos'
+                            value='Register Data'
                             className='uppercase rounded-md bg-indigo-700 font-bold text-white py-1 mt-5 hover:cursor-pointer hover:bg-indigo-900'
                         />
                     </form>
