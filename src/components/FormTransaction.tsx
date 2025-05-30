@@ -16,7 +16,7 @@ export default function FormTransaction() {
     const patientRegister = (data: transactionRequestType) => {
         
         addTransaction(data)
-        toast.success('Paciente registrado correctamente', {
+        toast.success('Transaction registered successfully', {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -28,6 +28,8 @@ export default function FormTransaction() {
         })
 
         reset() // Para limpiar el formulario
+
+
     }
 
     return (
@@ -77,21 +79,21 @@ export default function FormTransaction() {
                         </div>
 
                         <div className='flex flex-col gap-2'>
-                            <label htmlFor="clientName" className='font-semibold '>
+                            <label htmlFor="client" className='font-semibold '>
                                 Client name:
                             </label>
                             <input
                                 placeholder='Client name'
                                 type="text"
-                                id="clientName"
+                                id="client"
                                 className="px-2 py-1 rounded-md border-2 border-slate-300 focus:border-indigo-500 focus:outline-none bg-gray-50"
-                                {...register("clientName", {
+                                {...register("client", {
                                     required: "The client name is required",
                                 })}
                             />
 
-                            {errors.clientName && (
-                                <ErrorMessage>{errors.clientName?.message?.toString()}</ErrorMessage>
+                            {errors.client && (
+                                <ErrorMessage>{errors.client?.message?.toString()}</ErrorMessage>
                             )}
                         </div>
 

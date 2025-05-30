@@ -2,7 +2,7 @@
 export type transactionRequestType = {
     operation: string,
     amount: string,
-    clientName: string,
+    client: string,
     secret: string,
 }
 
