@@ -14,7 +14,7 @@ export default function App() {
 
     const { fetchTransactions } = useTransactionStore()
 
-    const currentYear = new Date().getFullYear(); // Para imprimir el anio en el footer
+    const currentYear = new Date().getFullYear(); // To print the year in the footer
 
     useEffect(() => {
         fetchTransactions()
@@ -22,7 +22,7 @@ export default function App() {
 
     return (
         <>
-            {/* VISTA DEL HEADER */}
+            {/* HEADER VIEW */}
             <header className="px-3 sm:px-8 md:px-10 lg:px-12 xl:px-14 flex justify-between items-center py-14 bg-red-800">
                 <h1 className="text-3xl sm:text-4xl md:text-5xl text-white font-bold">
                     Transactions
@@ -33,24 +33,24 @@ export default function App() {
             </header>
 
             <div className='flex flex-col sm:flex-row justify-center items-center sm:justify-around sm:items-stretch mb-6 pt-6'>
-                {/* LADO IZQUIERDO */}
+                {/* LEFT SIDE */}
                 <div className='w-4/5 sm:w-2/5'>
                     <SubtitleDetail
                         key={1}
                         subtitle='Register'
                     />
 
-                    {/* CONTENIDO DEL FORMULARIO */}
+                    {/* FORM CONTENT */}
                     <FormPatient />
                 </div>
 
-                {/* LADO DERECHO */}
+                {/* RIGHT SIDE */}
                 <div className='w-4/5 sm:w-2/5'>
                     <TransactionResponse />
                 </div>
             </div>
 
-            {/* CONTENIDO DEL FOOTER */}
+            {/* FOOTER CONTENT */}
             <footer className="pt-6 bg-red-800 pb-8 text-white">
                 <h2 className="text-center font-medium text-xl">All rights reserved by Alejandro Granados &copy; {currentYear} </h2>
 

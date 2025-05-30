@@ -14,7 +14,7 @@ export default function TransactionResponse() {
         <>
             {!hasTransactions ? (
                 <>
-                    {/* VISTA SI NO HAY PACIENTES */}
+                    {/* VIEW IF THERE ARE NO TRANSACTIONS */}
                     <SubtitleDetail 
                         key={2}
                         subtitle='There aren´t any transactions'
@@ -23,13 +23,13 @@ export default function TransactionResponse() {
             ) :
                 (
                     <>
-                        {/* CONTENIDO DE LA INFORMACION DE LOS PACIENTES */}
+                        {/* CONTENT OF THE TRANSACTIONS INFORMATION */}
                         <SubtitleDetail 
                             key={3}
                             subtitle='List of transactions'
                         />
 
-                        {/* INFORMACION DE CADA PACIENTE */}
+                        {/* INFORMATION OF EACH TRANSACTION */}
                         {transactionsResponses.map(transactionResponse => (
                             <TransactionResponseDetail key={transactionResponse.id}
                                 transactionResponse={transactionResponse}

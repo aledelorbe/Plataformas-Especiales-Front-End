@@ -16,7 +16,7 @@ export const useTransactionStore = create<TransactionState>()(
         (set) => ({
         transactionsResponses: [],
 
-        // Funcion que manda a llamar la peticion de llenar el arreglo de criptomonedas
+        // Function that calls the request to fill the transactions array
         fetchTransactions: async () => { 
 
             const trans = await getTransactions()
