@@ -2,7 +2,7 @@ import axios from 'axios'
 import { transactionResponseSchema, transactionsResponseSchema } from '../schema/transactionSchema'
 import { transactionRequestType } from '../types'
 
-// Funcion que hace una peticion para llenar el arreglo de 
+// Funcion que hace una peticion para llenar el arreglo de transactiones
 export async function getTransactions() {
 
     const transUrl = 'http://localhost:8085/api/transactions'

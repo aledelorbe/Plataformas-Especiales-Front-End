@@ -4,17 +4,24 @@ import { toast } from 'react-toastify'
 import { Element } from 'react-scroll';
 import { useTransactionStore } from '../store/transactionStore';
 import { transactionRequestType } from '../types';
+import CryptoJS from "crypto-js";
+
+// Keys
+const key = CryptoJS.enc.Utf8.parse("12345678901234567890123456789012"); // 32 chars
+const iv = CryptoJS.enc.Utf8.parse("1234567890123456"); // 16 chars
 
 export default function FormTransaction() {
 
     const { addTransaction } = useTransactionStore()
 
-    // Para manipular el formulario
+    // To handle the form
     const { register, handleSubmit, formState: { errors }, reset } = useForm<transactionRequestType>()
 
-    // Para procesar los datos del formulario
-    const patientRegister = (data: transactionRequestType) => {
-        
+    // To process the data of the form
+    const transactionRegister = (data: transactionRequestType) => {
+
+        data.secret = encrypt(data.secret)
+
         addTransaction(data)
         toast.success('Transaction registered successfully', {
             position: "top-right",
@@ -27,9 +34,18 @@ export default function FormTransaction() {
             theme: "colored",
         })
 
-        reset() // Para limpiar el formulario
+        reset() // To clean the form
+    }
 
+    // To encrypt de word
+    function encrypt(text: string) {
+        const encrypted = CryptoJS.AES.encrypt(text, key, {
+            iv: iv,
+            mode: CryptoJS.mode.CBC,
+            padding: CryptoJS.pad.Pkcs7,
+        });
 
+        return encrypted.toString();
     }
 
     return (
@@ -38,7 +54,7 @@ export default function FormTransaction() {
                 <div className='flex justify-around h-auto mb-20'>
                     <form
                         className='text-sm sm:text-sm md:text-base bg-white w-full px-5 pt-4 pb-7 flex flex-col gap-4 shadow-lg rounded-lg'
-                        onSubmit={handleSubmit(patientRegister)}
+                        onSubmit={handleSubmit(transactionRegister)}
                     >
                         <div className='flex flex-col gap-2'>
                             <label htmlFor="operation" className='font-semibold '>
